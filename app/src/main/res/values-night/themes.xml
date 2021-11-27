@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GitHubRepo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.GitHubRepo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,4 +13,41 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@drawable/bg_toolbar_dark</item>
+        <item name="elevation">4dp</item>
+        <item name="navigationIconTint">@color/primary_text_dark</item>
+        <item name="android:titleTextStyle">@style/Theme.Toolbar.Title</item>
+    </style>
+
+    <style name="Theme.Primary.Title" parent="Widget.AppCompat.TextView">
+        <item name="android:color">@color/primary_text_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:maxLength">26</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
+
+    <style name="Theme.Primary.Count" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/primary_text_dark</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
+
+
+    <style name="Theme.Primary.Topics" parent="Widget.AppCompat.TextView">
+        <item name="android:color">@color/primary_text_dark</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">@drawable/bg_repository_visibility_light</item>
+    </style>
+
 </resources>
