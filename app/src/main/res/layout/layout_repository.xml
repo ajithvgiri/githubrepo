@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="23dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textViewRepositoryName"
-        style="@style/Theme.Toolbar.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Retrofit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/textViewRepositoryDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        tools:text="BorderPatrol lets you import a KML file and then check if points are inside or outside the polygons the file defines."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryName" />
+        <variable
+            name="repositories"
+            type="com.ajithvgiri.githubrepo.api.Repositories" />
 
-    <TextView
-        android:id="@+id/textViewRepositoryVisibility"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        style="@style/Theme.Primary.Topics"
-        tools:text="Public"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewRepositoryName"
-        app:layout_constraintStart_toEndOf="@+id/textViewRepositoryName"
-        app:layout_constraintTop_toTopOf="@+id/textViewRepositoryName" />
+        <import type="android.text.TextUtils" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTopics"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        tools:listitem="@layout/layout_topics"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription" />
+        <import type="android.view.View" />
 
-    <TextView
-        android:id="@+id/textViewRepositoryMembersCount"
-        android:layout_width="wrap_content"
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        tools:text="800"
-        android:textSize="12sp"
-        style="@style/Theme.Primary.Count"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopics"
-        app:drawableLeftCompat="@drawable/ic_members" />
+        android:layout_marginBottom="4dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
 
-    <TextView
-        android:id="@+id/textViewRepositoryStarsCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        tools:text="800"
-        style="@style/Theme.Primary.Count"
-        app:layout_constraintStart_toEndOf="@+id/textViewRepositoryMembersCount"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopics"
-        app:drawableLeftCompat="@drawable/ic_star" />
+        <TextView
+            android:id="@+id/textViewRepositoryName"
+            style="@style/Theme.Toolbar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{repositories.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Retrofit" />
 
-    <TextView
-        android:id="@+id/textViewRepositoryIssuesCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        tools:text="800"
-        style="@style/Theme.Primary.Count"
-        app:layout_constraintStart_toEndOf="@+id/textViewRepositoryStarsCount"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopics"
-        app:drawableLeftCompat="@drawable/ic_issues" />
+        <TextView
+            android:id="@+id/textViewRepositoryDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{repositories.description}"
+            android:visibility="@{TextUtils.isEmpty(repositories.description) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryName"
+            tools:text="BorderPatrol lets you import a KML file and then check if points are inside or outside the polygons the file defines." />
 
-    <TextView
-        android:id="@+id/textViewRepositoryPullRequestCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        tools:text="800"
-        style="@style/Theme.Primary.Count"
-        app:layout_constraintStart_toEndOf="@+id/textViewRepositoryIssuesCount"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopics"
-        app:drawableStartCompat="@drawable/ic_pull_request" />
+        <TextView
+            android:id="@+id/textViewRepositoryVisibility"
+            style="@style/Theme.Primary.Topics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{repositories.visibility}"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRepositoryName"
+            app:layout_constraintStart_toEndOf="@+id/textViewRepositoryName"
+            app:layout_constraintTop_toTopOf="@+id/textViewRepositoryName"
+            tools:text="Public" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTopics"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="@{repositories.topics.size() > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"
+            tools:listitem="@layout/layout_topics" />
+
+        <TextView
+            android:id="@+id/textViewRepositoryStarsCount"
+            style="@style/Theme.Primary.Count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{String.valueOf(repositories.stargazers_count)}"
+            app:drawableLeftCompat="@drawable/ic_star"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopics"
+            tools:text="800" />
+
+        <TextView
+            android:id="@+id/textViewRepositoryIssuesCount"
+            style="@style/Theme.Primary.Count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@{String.valueOf(repositories.open_issues)}"
+            app:drawableLeftCompat="@drawable/ic_issues"
+            app:layout_constraintStart_toEndOf="@+id/textViewRepositoryStarsCount"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopics"
+            tools:text="800" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
