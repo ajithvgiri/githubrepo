@@ -18,7 +18,9 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Vi
     private val _repositories = MutableLiveData<List<Repositories>?>()
     val repositories: LiveData<List<Repositories>?> = _repositories
 
-    private val _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData<Boolean>().apply {
+        value = true
+    }
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _error = MutableLiveData<String?>()
@@ -28,7 +30,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Vi
         loadRepositories()
     }
 
-    private fun loadRepositories() {
+    fun loadRepositories() {
         viewModelScope.launch {
             repository.getOrganizationRepositories().collect { response ->
                 when (response.status) {

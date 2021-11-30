@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajithvgiri.githubrepo.adapter.RepositoriesAdapter
@@ -53,6 +54,22 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.error.observe(this, {
             Snackbar.make(findViewById(android.R.id.content),"$it",Snackbar.LENGTH_LONG).show()
+            binding.recyclerView.visibility = View.GONE
+            binding.layoutEmptyResults.visibility = View.VISIBLE
+        })
+
+        binding.buttonTryAgain.setOnClickListener {
+            viewModel.loadRepositories()
+        }
+
+        viewModel.isLoading.observe(this, Observer{
+            if (it){
+                binding.progressBar.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
+                binding.layoutEmptyResults.visibility = View.GONE
+            }else{
+                binding.progressBar.visibility = View.GONE
+            }
         })
     }
 

@@ -40,23 +40,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 
-        <ProgressBar
+
+
+        <LinearLayout
+            android:id="@+id/layoutEmptyResults"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewmodel.isLoading() ? View.VISIBLE : View.GONE}"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
 
-        <include
-            android:id="@+id/layoutEmptyResults"
-            layout="@layout/layout_empty_results"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/empty_results"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonTryAgain"
+                android:layout_width="wrap_content"
+                android:enabled="true"
+                android:layout_height="wrap_content"
+                android:text="@string/try_again" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 
